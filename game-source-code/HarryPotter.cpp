@@ -32,6 +32,11 @@ void HarryPotter::update()
 {
 }
 
+const sf::Vector2f &HarryPotter::getPos() const
+{
+    return this->sprite.getPosition();
+}
+
 void HarryPotter::render(sf::RenderTarget& targert)
 {
     targert.draw(this->sprite);

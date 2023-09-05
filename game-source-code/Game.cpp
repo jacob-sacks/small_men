@@ -23,10 +23,7 @@ void Game::initTextures(){
 void Game::initHarryPotter()
 {
     this->harry = new HarryPotter();
-
-    //resize
     
-
 }
 
 void Game::run()
@@ -36,6 +33,13 @@ void Game::run()
         this->render();
     }
 }
+
+void Game::update(){
+   this->updatePollEvents();
+   this->updateInput();
+   this->updateSpell();
+}
+
 
 void Game::updatePollEvents(){
     sf::Event e;
@@ -57,16 +61,26 @@ void Game::updateInput(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         this->harry->move(-1.f,0.f);   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
-        this->spellsVec.push_back(new Spell(this->textures["harrySpell"], 0.f, 0.f, 0.f, 0.f, 0.f));
+        this->spellsVec.push_back(new Spell(this->textures["harrySpell"], harry->getPos().x, harry->getPos().y, 1.f, 0.f, 5.f));
     }
 
 }
 
-void Game::update(){
-   this->updatePollEvents();
-   this->updateInput();
-   this->updateSpell();
+void Game::updateSpell(){
+    auto counter = 0;
+    for (auto *spell : this->spellsVec){
+        spell->update();
+        if(spell->getBounds().top + spell->getBounds().height <= 0.f){
+            delete this->spellsVec.at(counter);
+            this->spellsVec.erase(this->spellsVec.begin() + counter);
+            --counter;
+        }
+        ++counter;
+    }
+
+
 }
+
 
 void Game::render()
 {
@@ -80,11 +94,6 @@ void Game::render()
     this->window->display();
 }
 
-void Game::updateSpell(){
-    for (auto *spell : this->spellsVec){
-        spell->update();
-    }
-}
 
 Game::~Game()
 {

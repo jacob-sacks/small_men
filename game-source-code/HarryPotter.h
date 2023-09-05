@@ -22,6 +22,7 @@ public:
     HarryPotter();
     ~HarryPotter();
     void update();
+    const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget& targert);
     void move(const float dirX, const float dirY);
 };

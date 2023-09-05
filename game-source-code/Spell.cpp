@@ -9,6 +9,8 @@ Spell::Spell(sf::Texture* texture, float originX, float originY, float dirX, flo
     this->direction_.x = dirX;
     this->direction_.y = dirY;
     this->movementSpeed_ = movementSpeed;
+        this->shape_.scale(0.03f,0.03f);
+
 }
 
 Spell::~Spell(){
