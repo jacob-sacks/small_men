@@ -16,15 +16,21 @@ private:
     //Private Functions
     void initTexture();
     void initSprite();
+    void initVars();
     float movementSpeed;
+
+    float attackCoolDown;
+    float attackCoolDownMax;
 
 public:
     HarryPotter();
     ~HarryPotter();
     void update();
+    void updateCoolDown();
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget& targert);
     void move(const float dirX, const float dirY);
+    const bool canAttack();
 };
 
 

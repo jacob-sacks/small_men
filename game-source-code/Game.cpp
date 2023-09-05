@@ -38,6 +38,7 @@ void Game::update(){
    this->updatePollEvents();
    this->updateInput();
    this->updateSpell();
+   this->harry->update();
 }
 
 
@@ -60,7 +61,7 @@ void Game::updateInput(){
         this->harry->move(1.f,0.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
         this->harry->move(-1.f,0.f);   
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry->canAttack()){
         this->spellsVec.push_back(new Spell(this->textures["harrySpell"], harry->getPos().x, harry->getPos().y, 1.f, 0.f, 5.f));
     }
 
