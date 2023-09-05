@@ -86,7 +86,6 @@ void Game::updateSpell(){
             --counter;
         }
         ++counter;
-        std::cout << spells_.size() << "\n";
     }
 }
 
