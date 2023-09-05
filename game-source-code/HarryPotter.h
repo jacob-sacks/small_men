@@ -7,6 +7,7 @@
 #define HarryPotter_H
 
 
+
 class HarryPotter
 {
 private:
@@ -16,21 +17,21 @@ private:
     //Private Functions
     void initTexture();
     void initSprite();
-    void initVars();
-    float movementSpeed;
-
-    float attackCoolDown;
-    float attackCoolDownMax;
+    const float movementSpeed_ = 5.f;
+    const float attackCoolDownMax_ = 10.f;
+    float attackCoolDown_ = attackCoolDownMax_;
 
 public:
     HarryPotter();
     ~HarryPotter();
     void update();
     void updateCoolDown();
+    // void flipHarry(Direction dirr);
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget& targert);
     void move(const float dirX, const float dirY);
     const bool canAttack();
+    
 };
 
 

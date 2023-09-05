@@ -6,7 +6,7 @@
 Game::Game(){
     this->initWindow();
     this->initTextures();
-    this->initHarryPotter();
+    this->initVars();
 }
 
 void Game::initWindow(){
@@ -16,12 +16,18 @@ void Game::initWindow(){
 
 void Game::initTextures(){
     this->textures_.push_back(new sf::Texture());
-    this->textures_[texturesTypes::harrySpell]->loadFromFile("resources/harry_spell.png");
+    this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
 }
 
 void Game::initHarryPotter(){
     this->harry_ = new HarryPotter();
     this->deathEater_ = new DeathEater(20.f, 20.f);
+}
+
+void Game::initVars()
+{
+    this->initHarryPotter();
+    this->shootDirection = SHOOT_DIRECTION::RIGHT;
 }
 
 void Game::run(){
@@ -36,6 +42,7 @@ void Game::update(){
    this->updateInput();
    this->updateSpell();
    this->harry_->update();
+   
 }
 
 
@@ -54,12 +61,16 @@ void Game::updateInput(){
         this->harry_->move(0.f,-1.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         this->harry_->move(0.f,1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right))
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
         this->harry_->move(1.f,0.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left))
-        this->harry_->move(-1.f,0.f);   
+        this->shootDirection = SHOOT_DIRECTION::RIGHT;
+    }
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)){
+        this->harry_->move(-1.f,0.f);
+        this->shootDirection = SHOOT_DIRECTION::LEFT;
+    }   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack()){
-        this->spells_.push_back(new Spell(this->textures_[texturesTypes::harrySpell], harry_->getPos().x, harry_->getPos().y, 1.f, 0.f, 5.f));
+        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, 5.f));
     }
 
 }
@@ -75,6 +86,7 @@ void Game::updateSpell(){
             --counter;
         }
         ++counter;
+        std::cout << spells_.size() << "\n";
     }
 }
 
