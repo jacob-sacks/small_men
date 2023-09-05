@@ -1,15 +1,13 @@
 #include "Game.h"
 #include "HarryPotter.h"
 
-Game::Game()
-{
+Game::Game(){
     this->initWindow();
     this->initTextures();
     this->initHarryPotter();
 }
 
-void Game::initWindow()
-{
+void Game::initWindow(){
     this->window = new sf::RenderWindow(sf::VideoMode(800, 600), "Game", sf::Style::Close | sf::Style::Titlebar);
     //this->window->setFramerateLimit(60);
     this->window->setVerticalSyncEnabled(true);
@@ -25,8 +23,7 @@ void Game::initHarryPotter(){
     this->deathEater = new DeathEater(20.f, 20.f);
 }
 
-void Game::run()
-{
+void Game::run(){
     while(this->window->isOpen()){
         this->update();
         this->render();
@@ -77,13 +74,10 @@ void Game::updateSpell(){
         }
         ++counter;
     }
-
-
 }
 
 
-void Game::render()
-{
+void Game::render(){
     this->window->clear(sf::Color(50, 200, 50));
     this->harry->render(*this->window);
     // Stuff for draw
@@ -96,8 +90,7 @@ void Game::render()
 }
 
 
-Game::~Game()
-{
+Game::~Game(){
     delete this->window;
     delete this->harry;
     for (auto &texture : this->textures){
