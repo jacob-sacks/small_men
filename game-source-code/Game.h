@@ -5,6 +5,7 @@
 #include <vector>
 #include "HarryPotter.h"
 #include "Spell.h"
+#include "DeathEater.h"
 
 #ifndef Game_h
 #define Game_h
@@ -13,9 +14,10 @@ class Game{
     private:
         sf::RenderWindow* window;
         std::map<std::string, sf::Texture*> textures;
+        HarryPotter* harry;
+        DeathEater* deathEater;
         void initWindow();
         void initTextures();
-        HarryPotter* harry;
         void initHarryPotter();
         std::vector<Spell*> spellsVec; 
     public:

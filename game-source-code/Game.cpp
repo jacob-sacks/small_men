@@ -20,10 +20,9 @@ void Game::initTextures(){
     this->textures["harrySpell"]->loadFromFile("resources/harry_spell.png");
 }
 
-void Game::initHarryPotter()
-{
+void Game::initHarryPotter(){
     this->harry = new HarryPotter();
-    
+    this->deathEater = new DeathEater(20.f, 20.f);
 }
 
 void Game::run()
@@ -91,6 +90,7 @@ void Game::render()
     for (auto *spell : this->spellsVec){
         spell->render(this->window);
     }
+    this->deathEater->render(this->window);
 
     this->window->display();
 }

@@ -15,16 +15,20 @@
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include<time.h>
 #include "Game.h"
 #include "HarryPotter.h"
 #include "Spell.h"
+#include "DeathEater.h"
 
 
 
 int main()
 {
+    srand(time(static_cast<unsigned>(0)));
 	Game g; 
 	g.run();
+
 
 	
     return EXIT_SUCCESS;
