@@ -10,7 +10,7 @@ class Spell{
         sf::Sprite spell_;
         sf::Texture* texture_;
         sf::Vector2f direction_;
-        const float speed_ = 10.f;
+        const float speed_ = 25.f;
         void initSpell(float originX, float originY, float dirX, float dirY);
     public:
         Spell();

@@ -1,9 +1,10 @@
 #include "Spell.h"
 
 
-Spell::Spell()
-{
+Spell::Spell(){
+
 }
+
 Spell::Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY){
     this->texture_ = texture;
     this->initSpell(originX, originY, dirX, dirY);

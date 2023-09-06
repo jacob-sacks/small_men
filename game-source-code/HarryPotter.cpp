@@ -3,39 +3,30 @@
 #include <iostream>
 using namespace std;
 
-HarryPotter::HarryPotter()
-{
+HarryPotter::HarryPotter(){
     this->initTexture();
     this->initSprite();
 }
 
-void HarryPotter::initTexture()
-{
+void HarryPotter::initTexture(){
     if(!this->texture.loadFromFile("resources/harry-potter-clipart-cute.png")){
         std::cout << "Error";
     }
  
 }
 
-void HarryPotter::initSprite()
-{
+void HarryPotter::initSprite(){
     this->sprite.setTexture(this->texture);
-
-    //Resize sprite
-    //(x,y) --> (-x) flips yaxis
-   // this->sprite.setPosition(this->defaultLeftPos_,this->startHeight_);
     this->sprite.setPosition(this->startWidth_,this->startHeight_);
     this->sprite.scale(0.075f,0.075f);
 }
 
 
-void HarryPotter::update()
-{
+void HarryPotter::update(){
     this->updateCoolDown();
 }
 
-void HarryPotter::updateCoolDown()
-{
+void HarryPotter::updateCoolDown(){
     if(this->attackCoolDown_ <= this->attackCoolDownMax_){
         this->attackCoolDown_ += 0.5f;
     }
@@ -76,12 +67,10 @@ DIRECTION HarryPotter::mustTurn(const float dirX, const float dirY){
         return  DIRECTION::LEFT;
     }
     return DIRECTION::NO_TURN;
-    
 }
 
 
-const bool HarryPotter::canAttack()
-{
+const bool HarryPotter::canAttack(){
     if(this->attackCoolDown_ >= this->attackCoolDownMax_){
         this->attackCoolDown_ = 0.f;
         return true;
@@ -89,11 +78,9 @@ const bool HarryPotter::canAttack()
     return false;
 }
 
-const float HarryPotter::getStartWidth()
-{
+const float HarryPotter::getStartWidth(){
     return this->startWidth_;
 }
 
-HarryPotter::~HarryPotter()
-{
+HarryPotter::~HarryPotter(){
 }
