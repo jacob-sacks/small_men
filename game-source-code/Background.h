@@ -17,14 +17,15 @@ private:
     //Private Functions
     void initTexture();
     void initSprite();
-    // const float movementSpeed_ = 5.f;
+    const float movementSpeed_ = 5.f;
 public:
     Background();
     ~Background();
     void update();
+    void move(const float dirX, const float dirY);
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget* targert);
-    void move(const float dirX, const float dirY);
+   
 };
 
 #endif

@@ -68,15 +68,19 @@ void Game::updateInput(){
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
         this->harry_->move(0.f,1.f);
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
-        this->harry_->move(1.f,0.f);
+        //this->harry_->move(1.f,0.f);
+        this->background_->move(-1.f,0.f);
+        this->harry_->flipHarry(-1.f,0.f);
         this->shootDirection = SHOOT_DIRECTION::RIGHT;
     }
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)){
-        this->harry_->move(-1.f,0.f);
+        //this->harry_->move(-1.f,0.f);
+         this->background_->move(1.f,0.f);
+        this->harry_->flipHarry(1.f,0.f);
         this->shootDirection = SHOOT_DIRECTION::LEFT;
     }   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack()){
-        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, 5.f));
+        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, 10.f));
     }
 
 }

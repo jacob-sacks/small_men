@@ -21,6 +21,11 @@ void Background::update(){
 
 }
 
+void Background::move(const float dirX, const float dirY)
+{
+    this->background1_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
+}
+
 void Background::render(sf::RenderTarget *target){
     target->draw(this->background1_);
 }

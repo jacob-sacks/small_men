@@ -19,6 +19,9 @@ private:
     void initSprite();
     const float movementSpeed_ = 5.f;
     const float attackCoolDownMax_ = 10.f;
+    const float defaultLeftPos_ = 200.f;
+    const float defaultRightPos_ = 900.f;
+    const float startHeight_ = 300.f;
     float attackCoolDown_ = attackCoolDownMax_;
 
 public:
@@ -26,7 +29,7 @@ public:
     ~HarryPotter();
     void update();
     void updateCoolDown();
-    // void flipHarry(Direction dirr);
+    void flipHarry(const float dirX, const float dirY);
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget& targert);
     void move(const float dirX, const float dirY);
