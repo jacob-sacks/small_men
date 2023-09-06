@@ -9,7 +9,41 @@ Game::Game(){
     this->initVars();
 }
 
-void Game::initWindow(){
+void Game::turnTransition()
+{
+    const float leftDir = this->harry_->getStartWidth();
+    const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
+    switch (harryIsTurning_)
+    {
+    case DIRECTION::NO_TURN:
+        return;
+        break;
+    case DIRECTION::LEFT:
+            if(this->harry_->getPos().x >= rightDir){
+                this->harryIsTurning_ = DIRECTION::NO_TURN;
+            }
+            else{
+                this->harry_->move(3.f,0.f);
+                this->background_->move(3.f,0.f);
+            }
+
+        break;
+    case DIRECTION::RIGHT:
+         if(this->harry_->getPos().x <= leftDir){
+                this->harryIsTurning_ = DIRECTION::NO_TURN;
+            }
+            else{
+                this->harry_->move(-3.f,0.f);
+                this->background_->move(-3.f,0.f);
+            }
+        break;
+    default:
+        break;
+    }
+}
+
+void Game::initWindow()
+{
     this->window_ = new sf::RenderWindow(sf::VideoMode(this->screenWidth, this->screenHeight), "Game", sf::Style::Close | sf::Style::Titlebar);
     this->window_->setVerticalSyncEnabled(true);
 }
@@ -23,6 +57,7 @@ void Game::initVars(){
     this->initBackground();
     this->initHarryPotter();
     this->shootDirection = DIRECTION::RIGHT;
+    this->harryIsTurning_ = DIRECTION::NO_TURN;
 }
 
 void Game::initHarryPotter(){
@@ -48,6 +83,7 @@ void Game::update(){
    this->background_->update();
    this->updateSpell();
    this->harry_->update();
+   this->turnTransition();
    
 }
 
@@ -71,7 +107,7 @@ void Game::updateInput(){
         this->harryTurns_ = this->harry_->mustTurn(-1.f,0.f);
         if (this->harryTurns_ == DIRECTION::RIGHT){
             this->harry_->flip(harryTurns_); 
-            //Insert magnetisation func
+            this->harryIsTurning_ = DIRECTION::RIGHT;
         }
         else {
             this->background_->move(-1.f,0.f);
@@ -82,6 +118,7 @@ void Game::updateInput(){
         this->harryTurns_ = this->harry_->mustTurn(1.f,0.f);
         if(this->harryTurns_ == DIRECTION::LEFT){
             this->harry_->flip(harryTurns_);
+            harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
             this->background_->move(1.f,0.f);

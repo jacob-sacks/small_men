@@ -13,6 +13,7 @@
 
 enum class texturesTypes{harrySpell};
 
+
 class Game{
     private:
         sf::RenderWindow* window_;
@@ -23,8 +24,10 @@ class Game{
         std::vector<Spell*> spells_;
         DIRECTION shootDirection;
         DIRECTION harryTurns_;
+        DIRECTION harryIsTurning_;
         const unsigned int screenHeight = 650;
         const unsigned int screenWidth = 1100;
+        void turnTransition();
         void initWindow();
         void initTextures();
         void initVars();

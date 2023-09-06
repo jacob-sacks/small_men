@@ -89,6 +89,11 @@ const bool HarryPotter::canAttack()
     return false;
 }
 
+const float HarryPotter::getStartWidth()
+{
+    return this->startWidth_;
+}
+
 HarryPotter::~HarryPotter()
 {
 }
