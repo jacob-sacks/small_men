@@ -23,6 +23,7 @@ public:
     ~Background();
     void update();
     void move(const float dirX, const float dirY);
+    void turnHarry(const float dirX, const float dirY);
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget* targert);
    

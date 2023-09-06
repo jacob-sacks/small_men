@@ -13,8 +13,6 @@
 
 enum class texturesTypes{harrySpell};
 
-enum class SHOOT_DIRECTION{LEFT = -1, RIGHT = 1};
-
 class Game{
     private:
         sf::RenderWindow* window_;
@@ -23,7 +21,8 @@ class Game{
         DeathEater* deathEater_;
         Background* background_;
         std::vector<Spell*> spells_;
-        SHOOT_DIRECTION shootDirection;
+        DIRECTION shootDirection;
+        DIRECTION harryTurns_;
         const unsigned int screenHeight = 650;
         const unsigned int screenWidth = 1100;
         void initWindow();
