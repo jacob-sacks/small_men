@@ -9,6 +9,8 @@ class Background{
 
 private:
     sf::Sprite background1_;
+    sf::Sprite background2_;
+    sf::Sprite background3_;
     sf::Texture texture_;
     const float xScale_ = 0.572917f;
     const float yScale_ = 0.6018519f;
@@ -24,6 +26,7 @@ public:
     void update();
     void move(const float dirX, const float dirY);
     void turnHarry(const float dirX, const float dirY);
+    void teleport(sf::Sprite* background);
     const sf::Vector2f& getPos() const;
     void render(sf::RenderTarget* targert);
    
