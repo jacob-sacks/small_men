@@ -18,7 +18,7 @@ private:
     void initTexture();
     void initSprite();
     const float movementSpeed_ = 5.f;
-    const float attackCoolDownMax_ = 10.f;
+    const float attackCoolDownMax_ = 8.f;
     const float defaultLeftPos_ = 200.f;
     const float defaultRightPos_ = 900.f;
     const float startWidth_ = 200.f;
