@@ -1,13 +1,13 @@
 #include <iostream>
 #include <iomanip>
-#include "Game.h"
+// #include "Game.h"
 #include "HarryPotter.h"
 
-Game::Game(){
-    this->initWindow();
+// Game::Game(){
+//     this->initWindow();
     this->initTextures();
     this->initVars();
-}
+// }
 
 void Game::turnTransition()
 {
@@ -48,10 +48,10 @@ void Game::initWindow()
     this->window_->setVerticalSyncEnabled(true);
 }
 
-void Game::initTextures(){
-    this->textures_.push_back(new sf::Texture());
-    this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
-}
+// void Game::initTextures(){
+//     this->textures_.push_back(new sf::Texture());
+//     this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
+// }
 
 void Game::initVars(){
     this->initBackground();
@@ -70,12 +70,12 @@ void Game::initBackground(){
 }
 
 
-void Game::run(){
-    while(this->window_->isOpen()){
+//void Game::run(){
+//    while(this->window_->isOpen()){
         this->update();
-        this->render();
-    }
-}
+//        this->render();
+//    }
+//}
 
 void Game::update(){
    this->updatePollEvents();
@@ -146,22 +146,21 @@ void Game::updateSpell(){
 }
 
 
-void Game::render(){
-    this->window_->clear(sf::Color(50, 200, 50));
-    this->background_->render(this->window_);
-    this->harry_->render(*this->window_);
-    // Stuff for draw
-    for (auto *spell : this->spells_){
-        spell->render(this->window_);
-    }
-    this->deathEater_->render(this->window_);
+// void Game::render(){
+//     this->window_->clear(sf::Color(50, 200, 50));
+     this->background_->render(this->window_);
+     this->harry_->render(*this->window_);
+     // Stuff for draw
+     for (auto *spell : this->spells_){
+         spell->render(this->window_);     }
+     this->deathEater_->render(this->window_);
 
-    this->window_->display();
-}
+     this->window_->display();
+// }
 
 
 Game::~Game(){
-    delete this->window_;
+    // delete this->window_;
     delete this->background_;
     delete this->harry_;
     for (auto *texture : this->textures_){
