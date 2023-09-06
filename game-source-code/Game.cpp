@@ -19,16 +19,21 @@ void Game::initTextures(){
     this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
 }
 
+void Game::initVars(){
+    this->initBackground();
+    this->initHarryPotter();
+    this->shootDirection = SHOOT_DIRECTION::RIGHT;
+}
+
 void Game::initHarryPotter(){
     this->harry_ = new HarryPotter();
     this->deathEater_ = new DeathEater(20.f, 20.f);
 }
 
-void Game::initVars()
-{
-    this->initHarryPotter();
-    this->shootDirection = SHOOT_DIRECTION::RIGHT;
+void Game::initBackground(){
+    this->background_ = new Background();
 }
+
 
 void Game::run(){
     while(this->window_->isOpen()){
@@ -40,6 +45,7 @@ void Game::run(){
 void Game::update(){
    this->updatePollEvents();
    this->updateInput();
+   this->background_->update();
    this->updateSpell();
    this->harry_->update();
    
@@ -92,6 +98,7 @@ void Game::updateSpell(){
 
 void Game::render(){
     this->window_->clear(sf::Color(50, 200, 50));
+    this->background_->render(this->window_);
     this->harry_->render(*this->window_);
     // Stuff for draw
     for (auto *spell : this->spells_){
@@ -105,6 +112,7 @@ void Game::render(){
 
 Game::~Game(){
     delete this->window_;
+    delete this->background_;
     delete this->harry_;
     for (auto *texture : this->textures_){
         delete texture;

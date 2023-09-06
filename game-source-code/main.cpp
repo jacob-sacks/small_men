@@ -20,6 +20,7 @@
 #include "HarryPotter.h"
 #include "Spell.h"
 #include "DeathEater.h"
+#include "Background.h"
 
 
 
@@ -28,6 +29,7 @@ int main()
     srand(time(static_cast<unsigned>(0)));
 	Game g; 
 	g.run();
+    Background b;
 
 
 	

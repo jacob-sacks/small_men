@@ -6,6 +6,7 @@
 #include "HarryPotter.h"
 #include "Spell.h"
 #include "DeathEater.h"
+#include "Background.h"
 
 #ifndef Game_h
 #define Game_h
@@ -20,14 +21,16 @@ class Game{
         std::vector<sf::Texture*> textures_;
         HarryPotter* harry_;
         DeathEater* deathEater_;
+        Background* background_;
         std::vector<Spell*> spells_;
         SHOOT_DIRECTION shootDirection;
-        const unsigned int screenHeight = 600;
-        const unsigned int screenWidth = 800;
+        const unsigned int screenHeight = 650;
+        const unsigned int screenWidth = 1100;
         void initWindow();
         void initTextures();
-        void initHarryPotter(); 
         void initVars();
+        void initHarryPotter(); 
+        void initBackground();
     public:
         Game();
         ~Game();
