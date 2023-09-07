@@ -9,7 +9,7 @@ HarryPotter::HarryPotter(){
 }
 
 void HarryPotter::initTexture(){
-    if(!this->texture.loadFromFile("resources/harry-potter-clipart-cute.png")){
+    if(!this->texture.loadFromFile("resources/harry_potter_glow.png")){
         std::cout << "Error";
     }
  
