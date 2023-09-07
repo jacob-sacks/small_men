@@ -1,22 +1,22 @@
 
-#include <SFML/Audio.hpp>
-#include <SFML/Graphics.hpp>
-#include <SFML/System.hpp>
+// #include <SFML/Audio.hpp>
+// #include <SFML/Graphics.hpp>
+// #include <SFML/System.hpp>
 
-#ifndef HarryPotter_H
-#define HarryPotter_H
+// #ifndef HarryPotter_H
+// #define HarryPotter_H
 
 
 enum class DIRECTION{LEFT = -1, NO_TURN, RIGHT};
-class HarryPotter
-{
-private:
-    sf::Sprite sprite;
-    sf::Texture texture;
+// class HarryPotter
+// {
+// private:
+//     sf::Sprite sprite;
+//     sf::Texture texture;
 
     //Private Functions
-    void initTexture();
-    void initSprite();
+    // void initTexture();
+    // void initSprite();
     const float movementSpeed_ = 5.f;
     const float attackCoolDownMax_ = 10.f;
     const float defaultLeftPos_ = 200.f;
@@ -25,9 +25,9 @@ private:
     const float startHeight_ = 300.f;
     float attackCoolDown_ = attackCoolDownMax_;
 
-public:
-    HarryPotter();
-    ~HarryPotter();
+// public:
+//     HarryPotter();
+//     ~HarryPotter();
     void update();
     void updateCoolDown();
     void flip(DIRECTION dir);

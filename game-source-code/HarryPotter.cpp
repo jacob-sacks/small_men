@@ -1,32 +1,33 @@
-#include "HarryPotter.h"
+// #include "HarryPotter.h"
 
-#include <iostream>
-using namespace std;
+// #include <iostream>
+// using namespace std;
 
-HarryPotter::HarryPotter()
-{
-    this->initTexture();
-    this->initSprite();
-}
+// HarryPotter::HarryPotter()
+// {
+//     this->initTexture();
+//     this->initSprite();
+// }
 
-void HarryPotter::initTexture()
-{
-    if(!this->texture.loadFromFile("resources/harry-potter-clipart-cute.png")){
-        std::cout << "Error";
-    }
+// void HarryPotter::initTexture()
+// {
+//     if(!this->texture.loadFromFile("resources/harry-potter-clipart-cute.png")){
+//         std::cout << "Error";
+//     }
  
-}
+// }
 
-void HarryPotter::initSprite()
-{
-    this->sprite.setTexture(this->texture);
+// void HarryPotter::initSprite()
+// {
+//     this->sprite.setTexture(this->texture);
 
-    //Resize sprite
-    //(x,y) --> (-x) flips yaxis
-   // this->sprite.setPosition(this->defaultLeftPos_,this->startHeight_);
-    this->sprite.setPosition(this->startWidth_,this->startHeight_);
-    this->sprite.scale(0.075f,0.075f);
-}
+//     //Resize sprite
+//     //(x,y) --> (-x) flips yaxis
+//    // this->sprite.setPosition(this->defaultLeftPos_,this->startHeight_);
+    //didnt use startWidth and startHeight
+     this->sprite.setPosition(this->startWidth_,this->startHeight_);
+//     this->sprite.scale(0.075f,0.075f);
+// }
 
 
 void HarryPotter::update()
@@ -47,9 +48,9 @@ const sf::Vector2f &HarryPotter::getPos() const{
 }
 
 
-void HarryPotter::render(sf::RenderTarget& targert){
-    targert.draw(this->sprite);
-}
+// void HarryPotter::render(sf::RenderTarget& targert){
+//     targert.draw(this->sprite);
+// }
 
 void HarryPotter::move(const float dirX, const float dirY){
     this->sprite.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
@@ -94,6 +95,6 @@ const float HarryPotter::getStartWidth()
     return this->startWidth_;
 }
 
-HarryPotter::~HarryPotter()
-{
-}
+// HarryPotter::~HarryPotter()
+// {
+// }

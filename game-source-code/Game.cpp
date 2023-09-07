@@ -43,10 +43,10 @@ void Game::turnTransition()
 }
 
 void Game::initWindow()
-{
-    this->window_ = new sf::RenderWindow(sf::VideoMode(this->screenWidth, this->screenHeight), "Game", sf::Style::Close | sf::Style::Titlebar);
-    this->window_->setVerticalSyncEnabled(true);
-}
+// {
+//     this->window_ = new sf::RenderWindow(sf::VideoMode(this->screenWidth, this->screenHeight), "Game", sf::Style::Close | sf::Style::Titlebar);
+//     this->window_->setVerticalSyncEnabled(true);
+// }
 
 // void Game::initTextures(){
 //     this->textures_.push_back(new sf::Texture());
@@ -60,10 +60,10 @@ void Game::initVars(){
     this->harryIsTurning_ = DIRECTION::NO_TURN;
 }
 
-void Game::initHarryPotter(){
-    this->harry_ = new HarryPotter();
-    this->deathEater_ = new DeathEater(20.f, 20.f);
-}
+// void Game::initHarryPotter(){
+//     this->harry_ = new HarryPotter();
+     this->deathEater_ = new DeathEater(20.f, 20.f);
+// }
 
 void Game::initBackground(){
     this->background_ = new Background();
@@ -149,7 +149,7 @@ void Game::updateSpell(){
 // void Game::render(){
 //     this->window_->clear(sf::Color(50, 200, 50));
      this->background_->render(this->window_);
-     this->harry_->render(*this->window_);
+    //  this->harry_->render(*this->window_);
      // Stuff for draw
      for (auto *spell : this->spells_){
          spell->render(this->window_);     }
@@ -162,7 +162,7 @@ void Game::updateSpell(){
 Game::~Game(){
     // delete this->window_;
     delete this->background_;
-    delete this->harry_;
+    // delete this->harry_;
     for (auto *texture : this->textures_){
         delete texture;
     }

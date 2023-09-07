@@ -3,7 +3,7 @@
 // #include <SFML/System.hpp>
 #include <map>
 #include <vector>
-#include "HarryPotter.h"
+// #include "HarryPotter.h"
 #include "Spell.h"
 #include "DeathEater.h"
 #include "Background.h"
@@ -18,7 +18,7 @@ class Game{
     private:
         // sf::RenderWindow* window_;
         // std::vector<sf::Texture*> textures_;
-        HarryPotter* harry_;
+        // HarryPotter* harry_;
         DeathEater* deathEater_;
         Background* background_;
         std::vector<Spell*> spells_;
@@ -29,9 +29,10 @@ class Game{
         const unsigned int screenWidth = 1100;
         void turnTransition();
         // void initWindow();
-        // void initTextures();
-        // void initVars();
-        void initHarryPotter(); 
+        void initTextures();
+        //add harry potter initialisation in initVars
+        void initVars();
+        // void initHarryPotter(); 
         void initBackground();
     public:
         // Game();
