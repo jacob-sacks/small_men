@@ -9,42 +9,42 @@
 //     this->initVars();
 // }
 
-void Game::turnTransition(){
-    const float leftDir = this->harry_->getStartWidth();
-    const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
-    switch (harryIsTurning_)
-    {
-    case DIRECTION::NO_TURN:
+// void Game::turnTransition(){
+//     const float leftDir = this->harry_->getStartWidth();
+//     const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
+//     switch (harryIsTurning_)
+//     {
+//     case DIRECTION::NO_TURN:
         this->adjustSpellSpeed(this->phantomSpeed_);
-        return;
-        break;
-    case DIRECTION::LEFT:
-            if(this->harry_->getPos().x >= rightDir){
-                this->harryIsTurning_ = DIRECTION::NO_TURN;
+//         return;
+//         break;
+//     case DIRECTION::LEFT:
+//             if(this->harry_->getPos().x >= rightDir){
+//                 this->harryIsTurning_ = DIRECTION::NO_TURN;
                 this->adjustSpellSpeed(this->phantomSpeed_);
-            }
-            else{
-                this->harry_->move(3.f,0.f);
-                this->background_->move(3.f,0.f);
+//             }
+//             else{
+//                 this->harry_->move(3.f,0.f);
+//                 this->background_->move(3.f,0.f);
                 this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
-            }
+//             }
 
-        break;
-    case DIRECTION::RIGHT:
-         if(this->harry_->getPos().x <= leftDir){
-                this->harryIsTurning_ = DIRECTION::NO_TURN;
+//         break;
+//     case DIRECTION::RIGHT:
+//          if(this->harry_->getPos().x <= leftDir){
+//                 this->harryIsTurning_ = DIRECTION::NO_TURN;
                 this->adjustSpellSpeed(this->phantomSpeed_);
-            }
-            else{
-                this->harry_->move(-3.f,0.f);
-                this->background_->move(-3.f,0.f);
+//             }
+//             else{
+//                 this->harry_->move(-3.f,0.f);
+//                 this->background_->move(-3.f,0.f);
                 this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
-            }
-        break;
-    default:
-        break;
-    }
-}
+//             }
+//         break;
+//     default:
+//         break;
+//     }
+// }
 
 // void Game::initWindow()
 // {
@@ -85,10 +85,10 @@ void Game::initTextures(){
 // void Game::update(){
 //    this->updatePollEvents();
 //    this->updateInput();
-   this->background_->update();
+//    this->background_->update();
    this->updateSpell();
    this->harry_->update();
-   this->turnTransition();
+//    this->turnTransition();
    
 // }
 
@@ -169,16 +169,16 @@ void Game::adjustSpellSpeed(float phantomSpeed){
 }
 
 void Game::render(){
-    this->window_->clear(sf::Color(50, 200, 50));
-    this->background_->render(this->window_);
-    this->harry_->render(*this->window_);
+    // this->window_->clear(sf::Color(50, 200, 50));
+    // this->background_->render(this->window_);
+    // this->harry_->render(*this->window_);
     // Stuff for draw
     for (auto *spell : this->spells_){
         spell->render(this->window_);
     }
     this->deathEater_->render(this->window_);
 
-    this->window_->display();
+    // this->window_->display();
 }
 
 

@@ -33,9 +33,9 @@ void HarryPotter::updateCoolDown(){
 }
 
 
-const sf::Vector2f &HarryPotter::getPos() const{
-    return this->harryPotter_.getPosition();
-}
+// const sf::Vector2f &HarryPotter::getPos() const{
+//     return this->harryPotter_.getPosition();
+// }
 
 
 // void HarryPotter::render(sf::RenderTarget& targert){
@@ -81,9 +81,9 @@ void HarryPotter::resetCoolDown(){
     this->attackCoolDown_ = 0.f;
 }
 
-const float HarryPotter::getStartWidth(){
-    return this->startWidth_;
-}
+// const float HarryPotter::getStartWidth(){
+//     return this->startWidth_;
+// }
 
 float HarryPotter::getSpeed(){
     return this->speed_;

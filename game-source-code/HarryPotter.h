@@ -32,12 +32,12 @@
     void updateCoolDown();
     // void flip(DIRECTION dir);
     // DIRECTION mustTurn(const float dirX, const float dirY);
-    const sf::Vector2f& getPos() const;
+    // const sf::Vector2f& getPos() const;
     // void render(sf::RenderTarget& targert);
     // void move(const float dirX, const float dirY);
     const bool canAttack();
     void resetCoolDown();
-    const float getStartWidth();
+    // const float getStartWidth();
     float getSpeed();
     
 // };

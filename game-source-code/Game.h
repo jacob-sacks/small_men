@@ -29,7 +29,7 @@ enum class texturesTypes{harrySpell};
         bool isHoldingSpace_;
         // const unsigned int screenHeight = 650;
         //Wrong value in screen Width assignment
-        const unsigned int screenWidth = 1200;
+        // const unsigned int screenWidth = 1200;
         float phantomSpeed_;
         void turnTransition();
         // void initWindow();
