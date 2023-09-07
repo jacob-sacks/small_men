@@ -6,7 +6,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 
-TEST_CASE("Harry Moves 1 Speed Unit Right"){
+TEST_CASE("Harry moves 1 speed unit right"){
     auto testHarry = HarryPotter{};
     sf::Vector2f harryStartPos = testHarry.getPos();
     testHarry.move(1.f,0.f);
@@ -15,7 +15,7 @@ TEST_CASE("Harry Moves 1 Speed Unit Right"){
     CHECK(harryStartPos.y == harryEndPos.y);
 }
 
-TEST_CASE("Harry Moves 1 Speed Unit Left"){
+TEST_CASE("Harry moves 1 speed unit left"){
     auto testHarry = HarryPotter{};
     sf::Vector2f harryStartPos = testHarry.getPos();
     testHarry.move(-1.f,0.f);
@@ -24,7 +24,7 @@ TEST_CASE("Harry Moves 1 Speed Unit Left"){
     CHECK(harryStartPos.y == harryEndPos.y);
 }
 
-TEST_CASE("Harry Moves 1 Speed Unit Up"){
+TEST_CASE("Harry moves 1 speed unit up"){
     auto testHarry = HarryPotter{};
     sf::Vector2f harryStartPos = testHarry.getPos();
     testHarry.move(0.f,1.f);
@@ -33,11 +33,18 @@ TEST_CASE("Harry Moves 1 Speed Unit Up"){
     CHECK(harryStartPos.y == harryEndPos.y - testHarry.getSpeed());
 }
 
-TEST_CASE("Harry Moves 1 Speed Unit Down"){
+TEST_CASE("Harry moves 1 speed unit down"){
     auto testHarry = HarryPotter{};
     sf::Vector2f harryStartPos = testHarry.getPos();
     testHarry.move(0.f,-1.f);
     sf::Vector2f harryEndPos = testHarry.getPos();
     CHECK(harryStartPos.x == harryEndPos.x); 
     CHECK(harryStartPos.y == harryEndPos.y + testHarry.getSpeed());
+}
+
+TEST_CASE("Harry's Spells can not be shot one after another"){
+    auto testHarry = HarryPotter{};
+    //Shoot
+    testHarry.resetCoolDown();
+    CHECK_FALSE(testHarry.canAttack());
 }

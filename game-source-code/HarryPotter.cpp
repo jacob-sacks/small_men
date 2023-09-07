@@ -72,10 +72,13 @@ DIRECTION HarryPotter::mustTurn(const float dirX, const float dirY){
 
 const bool HarryPotter::canAttack(){
     if(this->attackCoolDown_ >= this->attackCoolDownMax_){
-        this->attackCoolDown_ = 0.f;
         return true;
     }
     return false;
+}
+
+void HarryPotter::resetCoolDown(){
+    this->attackCoolDown_ = 0.f;
 }
 
 const float HarryPotter::getStartWidth(){

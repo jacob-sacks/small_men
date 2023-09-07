@@ -138,6 +138,7 @@ void Game::updateInput(){
         this->phantomSpeed_ = 0.f;
     }   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
+        this->harry_->resetCoolDown();
         this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
         isHoldingSpace_ = true;
     }

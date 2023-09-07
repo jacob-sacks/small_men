@@ -36,6 +36,7 @@ public:
     void render(sf::RenderTarget& targert);
     void move(const float dirX, const float dirY);
     const bool canAttack();
+    void resetCoolDown();
     const float getStartWidth();
     float getSpeed();
     
