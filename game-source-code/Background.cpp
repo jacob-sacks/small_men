@@ -31,11 +31,11 @@ void Background::update(){
     this->teleport(&this->background3_);
 }
 
-void Background::move(const float dirX, const float dirY){
+// void Background::move(const float dirX, const float dirY){
     this->background1_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
-    this->background2_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
+//     this->background2_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
     this->background3_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
-}
+// }
 
 void Background::turnHarry(const float dirX, const float dirY){
     if(dirX < 0.f){

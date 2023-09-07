@@ -1,12 +1,12 @@
 #include <iostream>
 #include <iomanip>
 // #include "Game.h"
-#include "HarryPotter.h"
+// #include "HarryPotter.h"
 
 // Game::Game(){
 //     this->initWindow();
     this->initTextures();
-    this->initVars();
+    // this->initVars();
 // }
 
 void Game::turnTransition()
@@ -42,16 +42,16 @@ void Game::turnTransition()
     }
 }
 
-void Game::initWindow()
+// void Game::initWindow()
 // {
 //     this->window_ = new sf::RenderWindow(sf::VideoMode(this->screenWidth, this->screenHeight), "Game", sf::Style::Close | sf::Style::Titlebar);
 //     this->window_->setVerticalSyncEnabled(true);
 // }
 
-// void Game::initTextures(){
-//     this->textures_.push_back(new sf::Texture());
-//     this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
-// }
+void Game::initTextures(){
+    this->textures_.push_back(new sf::Texture());
+    this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
+}
 
 void Game::initVars(){
     this->initBackground();
@@ -65,21 +65,21 @@ void Game::initVars(){
      this->deathEater_ = new DeathEater(20.f, 20.f);
 // }
 
-void Game::initBackground(){
-    this->background_ = new Background();
-}
+// void Game::initBackground(){
+//     this->background_ = new Background();
+// }
 
 
 //void Game::run(){
 //    while(this->window_->isOpen()){
-        this->update();
+        // this->update();
 //        this->render();
 //    }
 //}
 
-void Game::update(){
-   this->updatePollEvents();
-   this->updateInput();
+// void Game::update(){
+//    this->updatePollEvents();
+//    this->updateInput();
    this->background_->update();
    this->updateSpell();
    this->harry_->update();
@@ -88,29 +88,29 @@ void Game::update(){
 }
 
 
-void Game::updatePollEvents(){
-    sf::Event e;
-    while (this->window_->pollEvent(e)){
-        if(e.Event::type == sf::Event::Closed)
-            this->window_->close();
-        if(e.Event::KeyPressed && e.Event::key.code == sf::Keyboard::Escape)
-            this->window_->close();    
-    }
-}
+// void Game::updatePollEvents(){
+//     sf::Event e;
+//     while (this->window_->pollEvent(e)){
+//         if(e.Event::type == sf::Event::Closed)
+//             this->window_->close();
+//         if(e.Event::KeyPressed && e.Event::key.code == sf::Keyboard::Escape)
+//             this->window_->close();    
+//     }
+// }
 
-void Game::updateInput(){
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
-        this->harry_->move(0.f,-1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
-        this->harry_->move(0.f,1.f);
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
+// void Game::updateInput(){
+//     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Up))
+//         this->harry_->move(0.f,-1.f);
+//     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Down))
+//         this->harry_->move(0.f,1.f);
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard:: Key::Right)){
         this->harryTurns_ = this->harry_->mustTurn(-1.f,0.f);
         if (this->harryTurns_ == DIRECTION::RIGHT){
             this->harry_->flip(harryTurns_); 
-            this->harryIsTurning_ = DIRECTION::RIGHT;
+            this->harryIsTurning_ = DIRECTION::RIGHT; 
         }
         else {
-            this->background_->move(-1.f,0.f);
+            // this->background_->move(-1.f,0.f);
         }
         this->shootDirection = DIRECTION::RIGHT;
     }
@@ -121,7 +121,7 @@ void Game::updateInput(){
             harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
-            this->background_->move(1.f,0.f);
+            // this->background_->move(1.f,0.f);
         }
         this->shootDirection = DIRECTION::LEFT;
     }   
@@ -148,7 +148,7 @@ void Game::updateSpell(){
 
 // void Game::render(){
 //     this->window_->clear(sf::Color(50, 200, 50));
-     this->background_->render(this->window_);
+    //  this->background_->render(this->window_);
     //  this->harry_->render(*this->window_);
      // Stuff for draw
      for (auto *spell : this->spells_){
@@ -161,7 +161,7 @@ void Game::updateSpell(){
 
 Game::~Game(){
     // delete this->window_;
-    delete this->background_;
+    // delete this->background_;
     // delete this->harry_;
     for (auto *texture : this->textures_){
         delete texture;

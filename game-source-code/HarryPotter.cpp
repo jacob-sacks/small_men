@@ -52,9 +52,9 @@ const sf::Vector2f &HarryPotter::getPos() const{
 //     targert.draw(this->sprite);
 // }
 
-void HarryPotter::move(const float dirX, const float dirY){
-    this->sprite.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
-}
+// void HarryPotter::move(const float dirX, const float dirY){
+//     this->sprite.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
+// }
 
 void HarryPotter::flip(DIRECTION dir){
     if(dir==DIRECTION::RIGHT){

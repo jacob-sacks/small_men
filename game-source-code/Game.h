@@ -25,22 +25,22 @@ class Game{
         DIRECTION shootDirection;
         DIRECTION harryTurns_;
         DIRECTION harryIsTurning_;
-        const unsigned int screenHeight = 650;
-        const unsigned int screenWidth = 1100;
+        // const unsigned int screenHeight = 650;
+        // const unsigned int screenWidth = 1100;
         void turnTransition();
         // void initWindow();
         void initTextures();
         //add harry potter initialisation in initVars
-        void initVars();
+        // void initVars();
         // void initHarryPotter(); 
-        void initBackground();
+        // void initBackground();
     public:
         // Game();
         // ~Game();
         // void run();
-        void updatePollEvents();
-        void updateInput();
-        void update();
+        // void updatePollEvents();
+        // void updateInput();
+        // void update();
         // void render();
         void updateSpell();
 };
