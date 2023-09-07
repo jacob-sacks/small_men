@@ -29,18 +29,13 @@ void Spell::setRelativeSpeed(float phantomSpeed){
 
 void Spell::update(){
     // auto tempSpeed = this->speed_*(this->direction_.x/(std::abs(this->direction_.x))); 
-    this->spell_.move((this->speed_*this->dirX_ + this->phantomSpeed_),0.f);
+    this->spell_.move((this->speed_*this->dirX_),0.f);
 }
 
 void Spell::render(sf::RenderTarget *target){
     target->draw(this->spell_);
 }
 
-void Spell::print()
-{
-        std::cout << "Bullet Speed is " << speed_*this->dirX_ << "\nPhantom Speed is " << this->phantomSpeed_ << "\nRelative Speed is " << this->speed_*this->dirX_ + this->phantomSpeed_ << "\n";
-
-}
 
 Spell::~Spell(){
 
