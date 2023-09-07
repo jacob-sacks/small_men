@@ -9,8 +9,7 @@ Game::Game(){
     this->initVars();
 }
 
-void Game::turnTransition()
-{
+void Game::turnTransition(){
     const float leftDir = this->harry_->getStartWidth();
     const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
     switch (harryIsTurning_)
@@ -25,6 +24,7 @@ void Game::turnTransition()
             else{
                 this->harry_->move(3.f,0.f);
                 this->background_->move(3.f,0.f);
+                //this->adjustSpellSpeed(3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
             }
 
         break;
@@ -35,6 +35,7 @@ void Game::turnTransition()
             else{
                 this->harry_->move(-3.f,0.f);
                 this->background_->move(-3.f,0.f);
+               // this->adjustSpellSpeed(-3.f*this->harry_->getSpeed() -3.f*this->background_->getSpeed());
             }
         break;
     default:

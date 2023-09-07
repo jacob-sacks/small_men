@@ -43,7 +43,7 @@ void HarryPotter::render(sf::RenderTarget& targert){
 }
 
 void HarryPotter::move(const float dirX, const float dirY){
-    this->sprite.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
+    this->sprite.move(this->speed_*dirX, this->speed_ * dirY);
 }
 
 void HarryPotter::flip(DIRECTION dir){
@@ -80,6 +80,10 @@ const bool HarryPotter::canAttack(){
 
 const float HarryPotter::getStartWidth(){
     return this->startWidth_;
+}
+
+float HarryPotter::getSpeed(){
+    return this->speed_;
 }
 
 HarryPotter::~HarryPotter(){

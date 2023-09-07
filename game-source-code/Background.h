@@ -19,7 +19,7 @@ private:
     //Private Functions
     void initTexture();
     void initSprite();
-    const float speed_ = 15.f;
+    const float speed_ = 5.f;
 public:
     Background();
     ~Background();

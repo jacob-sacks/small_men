@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System.hpp>
 #include <iostream>
+#include <cmath>
 
 #ifndef Spell_h
 #define Spell_h
