@@ -10,8 +10,9 @@ class Spell{
     private:
         sf::Sprite spell_;
         sf::Texture* texture_;
-        sf::Vector2f direction_;
-        float speed_ = 25.f;
+        float dirX_;
+        float dirY_;
+        float speed_ = 5.f;
         float phantomSpeed_;
         void initSpell(float originX, float originY, float dirX, float dirY);
     public:
@@ -22,6 +23,7 @@ class Spell{
         const sf::FloatRect getBounds() const;
         void update();
         void render(sf::RenderTarget* target);
+        void print();
 };
 
 

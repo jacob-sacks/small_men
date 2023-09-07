@@ -13,8 +13,8 @@ Spell::Spell(sf::Texture* texture, float originX, float originY, float dirX, flo
 void Spell::initSpell(float originX, float originY, float dirX, float dirY){
     this->spell_.setTexture(*texture_);
     this->spell_.setPosition(originX,originY);
-    this->direction_.x = dirX;
-    this->direction_.y = dirY;
+    this->dirX_ = dirX;
+    this->dirY_ = dirY;
     this->spell_.scale(0.03f,0.03f);
 }
 
@@ -29,12 +29,17 @@ void Spell::setRelativeSpeed(float phantomSpeed){
 
 void Spell::update(){
     // auto tempSpeed = this->speed_*(this->direction_.x/(std::abs(this->direction_.x))); 
-    this->spell_.move((this->speed_*this->direction_.x + this->phantomSpeed_),0.f);
-    std::cout << "Bullet Speed is " << speed_*this->direction_.x << "\nPhantom Speed is " << this->phantomSpeed_ << "\nRelative Speed is " << this->speed_*this->direction_.x + this->phantomSpeed_ << "\n";
+    this->spell_.move((this->speed_*this->dirX_ + this->phantomSpeed_),0.f);
 }
 
 void Spell::render(sf::RenderTarget *target){
     target->draw(this->spell_);
+}
+
+void Spell::print()
+{
+        std::cout << "Bullet Speed is " << speed_*this->dirX_ << "\nPhantom Speed is " << this->phantomSpeed_ << "\nRelative Speed is " << this->speed_*this->dirX_ + this->phantomSpeed_ << "\n";
+
 }
 
 Spell::~Spell(){

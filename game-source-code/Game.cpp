@@ -15,27 +15,33 @@ void Game::turnTransition(){
     switch (harryIsTurning_)
     {
     case DIRECTION::NO_TURN:
+        this->adjustSpellSpeed(this->phantomSpeed_);
+        for(auto &spell : spells_){
+            spell->print();
+        }
         return;
         break;
     case DIRECTION::LEFT:
             if(this->harry_->getPos().x >= rightDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
+                this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(3.f,0.f);
                 this->background_->move(3.f,0.f);
-                //this->adjustSpellSpeed(3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
+                this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
             }
 
         break;
     case DIRECTION::RIGHT:
          if(this->harry_->getPos().x <= leftDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
+                this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(-3.f,0.f);
                 this->background_->move(-3.f,0.f);
-               // this->adjustSpellSpeed(-3.f*this->harry_->getSpeed() -3.f*this->background_->getSpeed());
+                this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
             }
         break;
     default:
@@ -113,7 +119,8 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(-1.f,0.f);
-            this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
+            this->phantomSpeed_ = -1.f*this->background_->getSpeed();
+            //this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
         }
         this->shootDirection = DIRECTION::RIGHT;
     }
@@ -124,7 +131,8 @@ void Game::updateInput(){
             harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
-            this->adjustSpellSpeed(1.f*this->background_->getSpeed());
+            this->phantomSpeed_ = 1.f*this->background_->getSpeed();
+            // this->adjustSpellSpeed(1.f*this->background_->getSpeed());
             this->background_->move(1.f,0.f);
         }
         this->shootDirection = DIRECTION::LEFT;
