@@ -3,15 +3,13 @@
 #include <iostream>
 using namespace std;
 
-HarryPotter::HarryPotter()
-{
+HarryPotter::HarryPotter(){
     this->initTexture();
     this->initHarryPotter();
 }
 
-void HarryPotter::initTexture()
-{
-    if(!this->texture.loadFromFile("resources/harry-potter-clipart-cute.png")){
+void HarryPotter::initTexture(){
+    if(!this->texture.loadFromFile("resources/harry_potter_glow.png")){
         std::cout << "Error";
     }
  
@@ -29,13 +27,11 @@ void HarryPotter::initHarryPotter()
 }
 
 
-void HarryPotter::update()
-{
+void HarryPotter::update(){
     this->updateCoolDown();
 }
 
-void HarryPotter::updateCoolDown()
-{
+void HarryPotter::updateCoolDown(){
     if(this->attackCoolDown_ <= this->attackCoolDownMax_){
         this->attackCoolDown_ += 0.5f;
     }
@@ -52,7 +48,7 @@ void HarryPotter::render(sf::RenderTarget& targert){
 }
 
 void HarryPotter::move(const float dirX, const float dirY){
-    this->harryPotter_.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
+    this->harryPotter_.move(this->speed_*dirX, this->speed_ * dirY);
 }
 
 void HarryPotter::flip(DIRECTION dir){
@@ -76,12 +72,10 @@ DIRECTION HarryPotter::mustTurn(const float dirX, const float dirY){
         return  DIRECTION::LEFT;
     }
     return DIRECTION::NO_TURN;
-    
 }
 
 
-const bool HarryPotter::canAttack()
-{
+const bool HarryPotter::canAttack(){
     if(this->attackCoolDown_ >= this->attackCoolDownMax_){
         this->attackCoolDown_ = 0.f;
         return true;
@@ -89,11 +83,13 @@ const bool HarryPotter::canAttack()
     return false;
 }
 
-const float HarryPotter::getStartWidth()
-{
+const float HarryPotter::getStartWidth(){
     return this->startWidth_;
 }
 
-HarryPotter::~HarryPotter()
-{
+float HarryPotter::getSpeed(){
+    return this->speed_;
+}
+
+HarryPotter::~HarryPotter(){
 }

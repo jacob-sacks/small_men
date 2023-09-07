@@ -1,30 +1,42 @@
 #include "Spell.h"
 
+
 Spell::Spell(){
 
 }
-Spell::Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY, float movementSpeed){
-    this->shape_.setTexture(*texture);
-    this->shape_.setPosition(originX,originY);
-    this->direction_.x = dirX;
-    this->direction_.y = dirY;
-    this->movementSpeed_ = movementSpeed;
-        this->shape_.scale(0.03f,0.03f);
 
+Spell::Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY){
+    this->texture_ = texture;
+    this->initSpell(originX, originY, dirX, dirY);
 }
 
-Spell::~Spell(){
-
+void Spell::initSpell(float originX, float originY, float dirX, float dirY){
+    this->spell_.setTexture(*texture_);
+    this->spell_.setPosition(originX,originY);
+    this->dirX_ = dirX;
+    this->dirY_ = dirY;
+    this->spell_.scale(0.03f,0.03f);
 }
+
 
 const sf::FloatRect Spell::getBounds() const{
-    return this->shape_.getGlobalBounds();
+    return this->spell_.getGlobalBounds();
+}
+
+void Spell::setRelativeSpeed(float phantomSpeed){
+    this->phantomSpeed_ = phantomSpeed;
 }
 
 void Spell::update(){
-    this->shape_.move(this->movementSpeed_*this->direction_);
+    // auto tempSpeed = this->speed_*(this->direction_.x/(std::abs(this->direction_.x))); 
+    this->spell_.move((this->speed_*this->dirX_),0.f);
 }
 
 void Spell::render(sf::RenderTarget *target){
-    target->draw(this->shape_);
+    target->draw(this->spell_);
+}
+
+
+Spell::~Spell(){
+
 }

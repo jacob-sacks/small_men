@@ -9,32 +9,36 @@ Game::Game(){
     this->initVars();
 }
 
-void Game::turnTransition()
-{
+void Game::turnTransition(){
     const float leftDir = this->harry_->getStartWidth();
     const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
     switch (harryIsTurning_)
     {
     case DIRECTION::NO_TURN:
+        this->adjustSpellSpeed(this->phantomSpeed_);
         return;
         break;
     case DIRECTION::LEFT:
             if(this->harry_->getPos().x >= rightDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
+                this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(3.f,0.f);
                 this->background_->move(3.f,0.f);
+                this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
             }
 
         break;
     case DIRECTION::RIGHT:
          if(this->harry_->getPos().x <= leftDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
+                this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(-3.f,0.f);
                 this->background_->move(-3.f,0.f);
+                this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
             }
         break;
     default:
@@ -58,6 +62,7 @@ void Game::initVars(){
     this->initHarryPotter();
     this->shootDirection = DIRECTION::RIGHT;
     this->harryIsTurning_ = DIRECTION::NO_TURN;
+    this->isHoldingSpace_ = false;
 }
 
 void Game::initHarryPotter(){
@@ -111,6 +116,8 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(-1.f,0.f);
+            this->phantomSpeed_ = -1.f*this->background_->getSpeed();
+            //this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
         }
         this->shootDirection = DIRECTION::RIGHT;
     }
@@ -121,13 +128,22 @@ void Game::updateInput(){
             harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
+            this->phantomSpeed_ = 1.f*this->background_->getSpeed();
+            // this->adjustSpellSpeed(1.f*this->background_->getSpeed());
             this->background_->move(1.f,0.f);
         }
         this->shootDirection = DIRECTION::LEFT;
-    }   
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack()){
-        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, 10.f));
     }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
+        this->phantomSpeed_ = 0.f;
+    }   
+    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
+        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
+        isHoldingSpace_ = true;
+    }
+    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+        isHoldingSpace_ = false;
+    } 
 
 }
 
@@ -145,6 +161,11 @@ void Game::updateSpell(){
     }
 }
 
+void Game::adjustSpellSpeed(float phantomSpeed){
+    for (auto &spell: spells_){
+        spell->setRelativeSpeed(phantomSpeed);
+    }
+}
 
 void Game::render(){
     this->window_->clear(sf::Color(50, 200, 50));

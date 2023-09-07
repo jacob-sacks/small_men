@@ -3,6 +3,7 @@
 #include <SFML/System.hpp>
 #include <map>
 #include <vector>
+#include <algorithm>
 #include "HarryPotter.h"
 #include "Spell.h"
 #include "DeathEater.h"
@@ -25,8 +26,10 @@ class Game{
         DIRECTION shootDirection;
         DIRECTION harryTurns_;
         DIRECTION harryIsTurning_;
+        bool isHoldingSpace_;
         const unsigned int screenHeight = 650;
-        const unsigned int screenWidth = 1100;
+        const unsigned int screenWidth = 1200;
+        float phantomSpeed_;
         void turnTransition();
         void initWindow();
         void initTextures();
@@ -39,9 +42,10 @@ class Game{
         void run();
         void updatePollEvents();
         void updateInput();
+        void updateSpell();
+        void adjustSpellSpeed(float phantomSpeed);
         void update();
         void render();
-        void updateSpell();
 };
 
 #endif 

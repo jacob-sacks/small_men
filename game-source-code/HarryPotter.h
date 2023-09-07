@@ -17,7 +17,7 @@ private:
     //Private Functions
     void initTexture();
     void initHarryPotter();
-    const float movementSpeed_ = 5.f;
+    const float speed_ = 5.f;
     const float attackCoolDownMax_ = 10.f;
     const float defaultLeftPos_ = 200.f;
     const float defaultRightPos_ = 900.f;
@@ -37,6 +37,7 @@ public:
     void move(const float dirX, const float dirY);
     const bool canAttack();
     const float getStartWidth();
+    float getSpeed();
     
 };
 
