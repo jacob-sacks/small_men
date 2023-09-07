@@ -19,7 +19,7 @@ private:
     //Private Functions
     void initTexture();
     void initSprite();
-    const float movementSpeed_ = 5.f;
+    const float speed_ = 15.f;
 public:
     Background();
     ~Background();
@@ -28,6 +28,7 @@ public:
     void turnHarry(const float dirX, const float dirY);
     void teleport(sf::Sprite* background);
     const sf::Vector2f& getPos() const;
+    const float getSpeed();
     void render(sf::RenderTarget* targert);
    
 };

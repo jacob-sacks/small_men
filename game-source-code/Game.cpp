@@ -112,6 +112,7 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(-1.f,0.f);
+            this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
         }
         this->shootDirection = DIRECTION::RIGHT;
     }
@@ -122,6 +123,7 @@ void Game::updateInput(){
             harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
+            this->adjustSpellSpeed(1.f*this->background_->getSpeed());
             this->background_->move(1.f,0.f);
         }
         this->shootDirection = DIRECTION::LEFT;
@@ -150,6 +152,11 @@ void Game::updateSpell(){
     }
 }
 
+void Game::adjustSpellSpeed(float phantomSpeed){
+    for (auto &spell: spells_){
+        spell->setRelativeSpeed(phantomSpeed);
+    }
+}
 
 void Game::render(){
     this->window_->clear(sf::Color(50, 200, 50));

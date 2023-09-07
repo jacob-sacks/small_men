@@ -10,12 +10,14 @@ class Spell{
         sf::Sprite spell_;
         sf::Texture* texture_;
         sf::Vector2f direction_;
-        const float speed_ = 25.f;
+        float speed_ = 25.f;
+        float phantomSpeed_;
         void initSpell(float originX, float originY, float dirX, float dirY);
     public:
         Spell();
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY);
         ~Spell();
+        void setRelativeSpeed(float phantomSpeed);
         const sf::FloatRect getBounds() const;
         void update();
         void render(sf::RenderTarget* target);

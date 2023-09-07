@@ -3,6 +3,7 @@
 #include <SFML/System.hpp>
 #include <map>
 #include <vector>
+#include <algorithm>
 #include "HarryPotter.h"
 #include "Spell.h"
 #include "DeathEater.h"
@@ -40,9 +41,10 @@ class Game{
         void run();
         void updatePollEvents();
         void updateInput();
+        void updateSpell();
+        void adjustSpellSpeed(float phantomSpeed);
         void update();
         void render();
-        void updateSpell();
 };
 
 #endif 

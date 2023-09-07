@@ -32,31 +32,29 @@ void Background::update(){
 }
 
 void Background::move(const float dirX, const float dirY){
-    this->background1_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
-    this->background2_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
-    this->background3_.move(this->movementSpeed_ * dirX, this->movementSpeed_*dirY);
+    this->background1_.move(this->speed_ * dirX, this->speed_*dirY);
+    this->background2_.move(this->speed_ * dirX, this->speed_*dirY);
+    this->background3_.move(this->speed_ * dirX, this->speed_*dirY);
 }
 
-void Background::turnHarry(const float dirX, const float dirY){
-    if(dirX < 0.f){
 
-    } else 
-    if (dirX > 0.f){
-               
-    }
-}
 
 void Background::teleport(sf::Sprite *background){
-    if (background->getPosition().x <= -13*frameWidth_){
-        background->setPosition(8.f*frameWidth_, 0.f);
+    if (background->getPosition().x <= -15*frameWidth_){
+        background->setPosition(6.f*frameWidth_, 0.f);
         return;
     }
-    if (background->getPosition().x >= 7*frameWidth_){
-        background->setPosition(-8.f*frameWidth_, 0.f);
+    if (background->getPosition().x >= 9*frameWidth_){
+        background->setPosition(-6.f*frameWidth_, 0.f);
     }
 }
 
-void Background::render(sf::RenderTarget *target){
+const float Background::getSpeed(){
+    return this->speed_;
+}
+
+void Background::render(sf::RenderTarget *target)
+{
     target->draw(this->background1_);
     target->draw(this->background2_);
     target->draw(this->background3_);

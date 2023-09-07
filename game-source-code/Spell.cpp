@@ -23,8 +23,12 @@ const sf::FloatRect Spell::getBounds() const{
     return this->spell_.getGlobalBounds();
 }
 
+void Spell::setRelativeSpeed(float phantomSpeed){
+    this->phantomSpeed_ = phantomSpeed;
+}
+
 void Spell::update(){
-    this->spell_.move(this->speed_*this->direction_);
+    this->spell_.move((this->speed_-this->phantomSpeed_)*this->direction_);
 }
 
 void Spell::render(sf::RenderTarget *target){
