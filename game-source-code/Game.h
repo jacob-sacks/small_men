@@ -28,7 +28,7 @@ class Game{
         DIRECTION harryIsTurning_;
         bool isHoldingSpace_;
         const unsigned int screenHeight = 650;
-        const unsigned int screenWidth = 1100;
+        const unsigned int screenWidth = 1200;
         void turnTransition();
         void initWindow();
         void initTextures();

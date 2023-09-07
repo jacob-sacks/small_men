@@ -45,7 +45,8 @@ void Background::teleport(sf::Sprite *background){
         return;
     }
     if (background->getPosition().x >= 9*frameWidth_){
-        background->setPosition(-6.f*frameWidth_, 0.f);
+        //std::cout << "Teleported\n";
+        background->setPosition(-12.f*frameWidth_, 0.f);
     }
 }
 

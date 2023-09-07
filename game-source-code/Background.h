@@ -12,9 +12,9 @@ private:
     sf::Sprite background2_;
     sf::Sprite background3_;
     sf::Texture texture_;
-    const float xScale_ = 0.572917f;
+    const float xScale_ = 0.625f;
     const float yScale_ = 0.6018519f;
-    const float frameWidth_ = 1100.f;
+    const float frameWidth_ = 1200.f;
 
     //Private Functions
     void initTexture();
