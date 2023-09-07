@@ -6,7 +6,7 @@ using namespace std;
 HarryPotter::HarryPotter()
 {
     this->initTexture();
-    this->initSprite();
+    this->initHarryPotter();
 }
 
 void HarryPotter::initTexture()
@@ -17,15 +17,15 @@ void HarryPotter::initTexture()
  
 }
 
-void HarryPotter::initSprite()
+void HarryPotter::initHarryPotter()
 {
-    this->sprite.setTexture(this->texture);
+    this->harryPotter_.setTexture(this->texture);
 
     //Resize sprite
     //(x,y) --> (-x) flips yaxis
    // this->sprite.setPosition(this->defaultLeftPos_,this->startHeight_);
-    this->sprite.setPosition(this->startWidth_,this->startHeight_);
-    this->sprite.scale(0.075f,0.075f);
+    this->harryPotter_.setPosition(this->startWidth_,this->startHeight_);
+    this->harryPotter_.scale(0.075f,0.075f);
 }
 
 
@@ -43,36 +43,36 @@ void HarryPotter::updateCoolDown()
 
 
 const sf::Vector2f &HarryPotter::getPos() const{
-    return this->sprite.getPosition();
+    return this->harryPotter_.getPosition();
 }
 
 
 void HarryPotter::render(sf::RenderTarget& targert){
-    targert.draw(this->sprite);
+    targert.draw(this->harryPotter_);
 }
 
 void HarryPotter::move(const float dirX, const float dirY){
-    this->sprite.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
+    this->harryPotter_.move(this->movementSpeed_*dirX, this->movementSpeed_ * dirY);
 }
 
 void HarryPotter::flip(DIRECTION dir){
     if(dir==DIRECTION::RIGHT){
-        this->sprite.setScale(0.075f,0.075f);
-        this->sprite.setOrigin(0.f,0.f);
+        this->harryPotter_.setScale(0.075f,0.075f);
+        this->harryPotter_.setOrigin(0.f,0.f);
         return;
     }  
     if (dir==DIRECTION::LEFT){
-        this->sprite.setScale(-0.075f,0.075f);
-        this->sprite.setOrigin(this->sprite.getGlobalBounds().width/0.075f, 0.f);  
+        this->harryPotter_.setScale(-0.075f,0.075f);
+        this->harryPotter_.setOrigin(this->harryPotter_.getGlobalBounds().width/0.075f, 0.f);  
         return;     
     }
 }
 
 DIRECTION HarryPotter::mustTurn(const float dirX, const float dirY){
-    if(dirX < 0.f && this->sprite.getScale().x < 0.f){
+    if(dirX < 0.f && this->harryPotter_.getScale().x < 0.f){
         return DIRECTION::RIGHT;
     }
-    if (dirX > 0.f && this->sprite.getScale().x > 0.f){
+    if (dirX > 0.f && this->harryPotter_.getScale().x > 0.f){
         return  DIRECTION::LEFT;
     }
     return DIRECTION::NO_TURN;
