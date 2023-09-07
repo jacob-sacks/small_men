@@ -12,17 +12,20 @@ class Spell{
         sf::Texture* texture_;
         float dirX_;
         float dirY_;
-        float speed_ = 5.f;
-        float phantomSpeed_;
-        void initSpell(float originX, float originY, float dirX, float dirY);
+        const float speed_ = 5.f;
+        float phantomVelocity_;
+        float actualVelocity_;
+        void initSpell(float originX, float originY, float dirX, float dirY, float travelingXVelocity);
     public:
         Spell();
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY);
+        Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY, float travelingXVelocity);
         ~Spell();
-        void setRelativeSpeed(float phantomSpeed);
+        void updatePhantomVelocity(float phantomSpeed);
         const sf::FloatRect getBounds() const;
         void update();
         void render(sf::RenderTarget* target);
+        float getActualVelocity();
         void print();
 };
 

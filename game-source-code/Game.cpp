@@ -15,30 +15,30 @@ void Game::turnTransition(){
     switch (harryIsTurning_)
     {
     case DIRECTION::NO_TURN:
-        this->adjustSpellSpeed(this->phantomSpeed_);
+        //this->adjustSpellSpeed(this->phantomSpeed_);
         return;
         break;
     case DIRECTION::LEFT:
             if(this->harry_->getPos().x >= rightDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
-                this->adjustSpellSpeed(this->phantomSpeed_);
+                //this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(3.f,0.f);
                 this->background_->move(3.f,0.f);
-                this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
+                //this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
             }
 
         break;
     case DIRECTION::RIGHT:
          if(this->harry_->getPos().x <= leftDir){
                 this->harryIsTurning_ = DIRECTION::NO_TURN;
-                this->adjustSpellSpeed(this->phantomSpeed_);
+                //this->adjustSpellSpeed(this->phantomSpeed_);
             }
             else{
                 this->harry_->move(-3.f,0.f);
                 this->background_->move(-3.f,0.f);
-                this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
+                //this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
             }
         break;
     default:
@@ -116,7 +116,7 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(-1.f,0.f);
-            this->phantomSpeed_ = -1.f*this->background_->getSpeed();
+            this->phantomXVelocity_ = 1.f*this->background_->getSpeed();
             //this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
         }
         this->shootDirection = DIRECTION::RIGHT;
@@ -128,18 +128,18 @@ void Game::updateInput(){
             harryIsTurning_ = DIRECTION::LEFT;
         }
         else {
-            this->phantomSpeed_ = 1.f*this->background_->getSpeed();
-            // this->adjustSpellSpeed(1.f*this->background_->getSpeed());
             this->background_->move(1.f,0.f);
+            this->phantomXVelocity_ = -1.f*this->background_->getSpeed();
         }
         this->shootDirection = DIRECTION::LEFT;
     }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
-        this->phantomSpeed_ = 0.f;
+        this->phantomXVelocity_ = 0.f;
     }   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
         this->harry_->resetCoolDown();
-        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
+        /////////////////////////
+        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, this->phantomXVelocity_));
         isHoldingSpace_ = true;
     }
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
@@ -151,6 +151,7 @@ void Game::updateInput(){
 void Game::updateSpell(){
     auto counter = 0;
     for (auto *spell : this->spells_){
+        std::cout <<  "Relative Velocity Is " << spell->getActualVelocity() - this->phantomXVelocity_ << "\n";
         spell->update();
         if((spell->getBounds().top + spell->getBounds().height <= 0.f) || (spell->getBounds().top >= this->screenHeight) ||
            (spell->getBounds().left + spell->getBounds().width <= 0.f) || (spell->getBounds().left >= this->screenWidth)){
@@ -162,9 +163,9 @@ void Game::updateSpell(){
     }
 }
 
-void Game::adjustSpellSpeed(float phantomSpeed){
+void Game::adjustSpellSpeed(float phantomXVelocity){
     for (auto &spell: spells_){
-        spell->setRelativeSpeed(phantomSpeed);
+        spell->updatePhantomVelocity(phantomXVelocity);
     }
 }
 
