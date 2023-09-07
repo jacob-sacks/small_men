@@ -11,12 +11,12 @@ enum class DIRECTION{LEFT = -1, NO_TURN, RIGHT};
 class HarryPotter
 {
 private:
-    sf::Sprite sprite;
+    sf::Sprite harryPotter_;
     sf::Texture texture;
 
     //Private Functions
     void initTexture();
-    void initSprite();
+    void initHarryPotter();
     const float speed_ = 1.f;
     const float attackCoolDownMax_ = 8.f;
     const float defaultLeftPos_ = 200.f;
