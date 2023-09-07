@@ -46,5 +46,18 @@ TEST_CASE("Harry's Spells can not be shot one after another"){
     auto testHarry = HarryPotter{};
     //Shoot
     testHarry.resetCoolDown();
+    testHarry.updateCoolDown();
     CHECK_FALSE(testHarry.canAttack());
 }
+
+TEST_CASE("Harry's can fire multiple spells after waiting for cooldown period to expire"){
+    const int coolDownWait = 17;
+    auto testHarry = HarryPotter{};
+    //Shoot
+    testHarry.resetCoolDown();
+    for(auto counter = 0; counter < coolDownWait; ++counter)
+        testHarry.updateCoolDown();
+    CHECK(testHarry.canAttack());
+}
+
+
