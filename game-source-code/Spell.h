@@ -12,7 +12,7 @@ class Spell{
         sf::Texture* texture_;
         float dirX_;
         float dirY_;
-        const float speed_ = 5.f;
+        const float speed_ = 15.f;
         float phantomVelocity_;
         float actualVelocity_;
         void initSpell(float originX, float originY, float dirX, float dirY, float travelingXVelocity);
