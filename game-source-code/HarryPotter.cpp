@@ -10,7 +10,7 @@ HarryPotter::HarryPotter(){
 
 void HarryPotter::initTexture(){
     if(!this->texture.loadFromFile("resources/harry_potter_glow.png")){
-        std::cout << "Error";
+        throw std::runtime_error("Failed to load texture from file");
     }
  
 }
