@@ -29,7 +29,7 @@ class Game{
         bool isHoldingSpace_;
         const unsigned int screenHeight = 650;
         const unsigned int screenWidth = 1200;
-        float phantomSpeed_;
+        float phantomXVelocity_;
         void turnTransition();
         void initWindow();
         void initTextures();
