@@ -5,7 +5,7 @@
 
 // Game::Game(){
 //     this->initWindow();
-    this->initTextures();
+    // this->initTextures();
 //     this->initVars();
 // }
 
@@ -52,15 +52,15 @@
 //     this->window_->setVerticalSyncEnabled(true);
 // }
 
-void Game::initTextures(){
-    this->textures_.push_back(new sf::Texture());
-    this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
-}
+// void Game::initTextures(){
+//     this->textures_.push_back(new sf::Texture());
+//     this->textures_[static_cast<int>(texturesTypes::harrySpell)]->loadFromFile("resources/harry_spell.png");
+// }
 
 // void Game::initVars(){
 //     this->initBackground();
     // this->initHarryPotter();
-    this->shootDirection = DIRECTION::RIGHT;
+    // this->shootDirection = DIRECTION::RIGHT;
     // this->harryIsTurning_ = DIRECTION::NO_TURN;
     this->isHoldingSpace_ = false;
 // }
@@ -86,7 +86,7 @@ void Game::initTextures(){
 //    this->updatePollEvents();
 //    this->updateInput();
 //    this->background_->update();
-   this->updateSpell();
+//    this->updateSpell();
    this->harry_->update();
 //    this->turnTransition();
    
@@ -119,7 +119,7 @@ void Game::initTextures(){
             this->phantomSpeed_ = -1.f*this->background_->getSpeed();
             //this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
         // }
-        this->shootDirection = DIRECTION::RIGHT;
+        // this->shootDirection = DIRECTION::RIGHT;
     //}
     // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left)){
         // this->harryTurns_ = this->harry_->mustTurn(1.f,0.f);
@@ -132,35 +132,36 @@ void Game::initTextures(){
             // this->adjustSpellSpeed(1.f*this->background_->getSpeed());
             // this->background_->move(1.f,0.f);
   //      }
-        this->shootDirection = DIRECTION::LEFT;
+        // this->shootDirection = DIRECTION::LEFT;
     }
  //   if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
         this->phantomSpeed_ = 0.f;
     }   
+    //Must add cool down and no holding space
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
-        this->harry_->resetCoolDown();
-        this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
+         this->harry_->resetCoolDown();
+//         this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
         isHoldingSpace_ = true;
-    }
+    // } 
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
         isHoldingSpace_ = false;
     } 
 
 }
 
-void Game::updateSpell(){
-    auto counter = 0;
-    for (auto *spell : this->spells_){
-        spell->update();
-        if((spell->getBounds().top + spell->getBounds().height <= 0.f) || (spell->getBounds().top >= this->screenHeight) ||
-           (spell->getBounds().left + spell->getBounds().width <= 0.f) || (spell->getBounds().left >= this->screenWidth)){
-            delete this->spells_.at(counter);
-            this->spells_.erase(this->spells_.begin() + counter);
-            --counter;
-        }
-        ++counter;
-    }
-}
+// void Game::updateSpell(){
+//     auto counter = 0;
+//     for (auto *spell : this->spells_){
+//         spell->update();
+//         if((spell->getBounds().top + spell->getBounds().height <= 0.f) || (spell->getBounds().top >= this->screenHeight) ||
+//            (spell->getBounds().left + spell->getBounds().width <= 0.f) || (spell->getBounds().left >= this->screenWidth)){
+//             delete this->spells_.at(counter);
+//             this->spells_.erase(this->spells_.begin() + counter);
+//             --counter;
+//         }
+//         ++counter;
+//     }
+// }
 
 void Game::adjustSpellSpeed(float phantomSpeed){
     for (auto &spell: spells_){
@@ -173,9 +174,9 @@ void Game::render(){
     // this->background_->render(this->window_);
     // this->harry_->render(*this->window_);
     // Stuff for draw
-    for (auto *spell : this->spells_){
-        spell->render(this->window_);
-    }
+    // for (auto *spell : this->spells_){
+    //     spell->render(this->window_);
+    // }
     this->deathEater_->render(this->window_);
 
     // this->window_->display();
@@ -189,7 +190,7 @@ void Game::render(){
     for (auto *texture : this->textures_){
         delete texture;
     }
-    for (auto *spell : this->spells_){
-        delete spell;
-    }
+    // for (auto *spell : this->spells_){
+    //     delete spell;
+    // }
 // }
