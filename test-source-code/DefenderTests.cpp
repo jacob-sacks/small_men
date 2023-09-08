@@ -61,3 +61,40 @@ TEST_CASE("Harry's can fire multiple spells after waiting for cooldown period to
 }
 
 
+TEST_CASE("When harry is facing left, and is told to move to a position to his right - the harryIsTurning_ member is set to RIGHT"){
+    auto testHarry = HarryPotter{};
+    //Set Up
+    testHarry.flip(DIRECTION::LEFT);
+    DIRECTION turnDirection = testHarry.mustTurn(-1, 0);
+    //Assert
+    CHECK(turnDirection == DIRECTION::RIGHT);
+}
+
+TEST_CASE("When harry is facing right, and is told to move to a position to his left - the harryIsTurning_ member is set to LEFT"){
+    auto testHarry = HarryPotter{};
+    //Set Up
+    testHarry.flip(DIRECTION::RIGHT);
+    DIRECTION turnDirection = testHarry.mustTurn(1, 0);
+    //Assert
+    CHECK(turnDirection == DIRECTION::LEFT);
+}
+
+TEST_CASE("When harry is facing left, and is told to move to a position to his left - the harryIsTurning_ member is set to NO_TURN"){
+    auto testHarry = HarryPotter{};
+    //Set Up
+    testHarry.flip(DIRECTION::LEFT);
+    DIRECTION turnDirection = testHarry.mustTurn(1, 0);
+    //Assert
+    CHECK(turnDirection == DIRECTION::NO_TURN);
+}
+
+TEST_CASE("When harry is facing right, and is told to move to a position to his right - the harryIsTurning_ member is set to NO_TURN"){
+    auto testHarry = HarryPotter{};
+    //Set Up
+    testHarry.flip(DIRECTION::RIGHT);
+    DIRECTION turnDirection = testHarry.mustTurn(-1, 0);
+    //Assert
+    CHECK(turnDirection == DIRECTION::NO_TURN);
+}
+
+
