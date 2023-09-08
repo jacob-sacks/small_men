@@ -26,7 +26,7 @@
         // DIRECTION shootDirection;
         // DIRECTION harryTurns_;
         // DIRECTION harryIsTurning_;
-        bool isHoldingSpace_;
+        // bool isHoldingSpace_;
         // const unsigned int screenHeight = 650;
         //Wrong value in screen Width assignment
         // const unsigned int screenWidth = 1200;

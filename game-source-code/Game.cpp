@@ -62,7 +62,7 @@
     // this->initHarryPotter();
     // this->shootDirection = DIRECTION::RIGHT;
     // this->harryIsTurning_ = DIRECTION::NO_TURN;
-    this->isHoldingSpace_ = false;
+    // this->isHoldingSpace_ = false;
 // }
 
 // void Game::initHarryPotter(){
@@ -87,7 +87,7 @@
 //    this->updateInput();
 //    this->background_->update();
 //    this->updateSpell();
-   this->harry_->update();
+//    this->harry_->update();
 //    this->turnTransition();
    
 // }
@@ -133,19 +133,19 @@
             // this->background_->move(1.f,0.f);
   //      }
         // this->shootDirection = DIRECTION::LEFT;
-    }
- //   if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
+    // }
+   if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Left) && !sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Right)){
         this->phantomSpeed_ = 0.f;
     }   
     //Must add cool down and no holding space
-    if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
-         this->harry_->resetCoolDown();
+    // if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
+        //  this->harry_->resetCoolDown();
 //         this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f));
-        isHoldingSpace_ = true;
+        // isHoldingSpace_ = true;
     // } 
-    if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
-        isHoldingSpace_ = false;
-    } 
+    // if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
+    //     isHoldingSpace_ = false;
+    // } 
 
 }
 
@@ -187,9 +187,9 @@ void Game::render(){
 //     delete this->window_;
 //     delete this->background_;
 //     delete this->harry_;
-    for (auto *texture : this->textures_){
-        delete texture;
-    }
+    // for (auto *texture : this->textures_){
+    //     delete texture;
+    // }
     // for (auto *spell : this->spells_){
     //     delete spell;
     // }

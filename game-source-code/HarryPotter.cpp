@@ -22,15 +22,15 @@
 // }
 
 
-void HarryPotter::update(){
-    this->updateCoolDown();
-}
+// void HarryPotter::update(){
+//     this->updateCoolDown();
+// }
 
-void HarryPotter::updateCoolDown(){
-    if(this->attackCoolDown_ <= this->attackCoolDownMax_){
-        this->attackCoolDown_ += 0.5f;
-    }
-}
+// void HarryPotter::updateCoolDown(){
+//     if(this->attackCoolDown_ <= this->attackCoolDownMax_){
+//         this->attackCoolDown_ += 0.5f;
+//     }
+// }
 
 
 // const sf::Vector2f &HarryPotter::getPos() const{
@@ -70,16 +70,16 @@ void HarryPotter::updateCoolDown(){
 // }
 
 
-const bool HarryPotter::canAttack(){
-    if(this->attackCoolDown_ >= this->attackCoolDownMax_){
-        return true;
-    }
-    return false;
-}
+// const bool HarryPotter::canAttack(){
+//     if(this->attackCoolDown_ >= this->attackCoolDownMax_){
+//         return true;
+//     }
+//     return false;
+// }
 
-void HarryPotter::resetCoolDown(){
-    this->attackCoolDown_ = 0.f;
-}
+// void HarryPotter::resetCoolDown(){
+//     this->attackCoolDown_ = 0.f;
+// }
 
 // const float HarryPotter::getStartWidth(){
 //     return this->startWidth_;
