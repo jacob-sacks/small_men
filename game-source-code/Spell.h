@@ -14,6 +14,7 @@ class Spell{
         float dirY_;
         const float speed_ = 15.f;
         float phantomVelocity_;
+        float phantomTurnVelocity_;
         float actualVelocity_;
         void initSpell(float originX, float originY, float dirX, float dirY, float travelingXVelocity);
     public:
@@ -21,7 +22,7 @@ class Spell{
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY);
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY, float travelingXVelocity);
         ~Spell();
-        void updatePhantomVelocity(float phantomSpeed);
+        void updatePhantomTurnVelocity(float turnPhantomVelocity);
         const sf::FloatRect getBounds() const;
         void update();
         void render(sf::RenderTarget* target);

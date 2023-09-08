@@ -30,13 +30,13 @@ const sf::FloatRect Spell::getBounds() const{
     return this->spell_.getGlobalBounds();
 }
 
-void Spell::updatePhantomVelocity(float travelingXVelocity){
-    this->phantomVelocity_ = travelingXVelocity;
+void Spell::updatePhantomTurnVelocity(float phantomTurnVelocity){
+    this->phantomTurnVelocity_ = phantomTurnVelocity;
 }
 
 void Spell::update(){
     // auto tempSpeed = this->speed_*(this->direction_.x/(std::abs(this->direction_.x))); 
-    this->actualVelocity_ = this->speed_*this->dirX_ + this->phantomVelocity_*abs(this->dirX_);
+    this->actualVelocity_ = this->speed_*this->dirX_ + this->phantomVelocity_*abs(this->dirX_) + this->phantomTurnVelocity_*abs(this->dirX_);
     this->spell_.move((this->actualVelocity_),0.f);
     //std::cout << "Phantom: " << this->phantomVelocity_*abs(this->phantomVelocity_) << "\nActual: " << this->actualVelocity_ << "\n";
 }

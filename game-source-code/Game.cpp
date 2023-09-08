@@ -9,42 +9,6 @@ Game::Game(){
     this->initVars();
 }
 
-void Game::turnTransition(){
-    const float leftDir = this->harry_->getStartWidth();
-    const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
-    switch (harryIsTurning_)
-    {
-    case DIRECTION::NO_TURN:
-        //this->adjustSpellSpeed(this->phantomSpeed_);
-        return;
-        break;
-    case DIRECTION::LEFT:
-            if(this->harry_->getPos().x >= rightDir){
-                this->harryIsTurning_ = DIRECTION::NO_TURN;
-                //this->adjustSpellSpeed(this->phantomSpeed_);
-            }
-            else{
-                this->harry_->move(3.f,0.f);
-                this->background_->move(3.f,0.f);
-                //this->adjustSpellSpeed(this->phantomSpeed_ + 3.f*this->harry_->getSpeed() + 3.f*this->background_->getSpeed());
-            }
-
-        break;
-    case DIRECTION::RIGHT:
-         if(this->harry_->getPos().x <= leftDir){
-                this->harryIsTurning_ = DIRECTION::NO_TURN;
-                //this->adjustSpellSpeed(this->phantomSpeed_);
-            }
-            else{
-                this->harry_->move(-3.f,0.f);
-                this->background_->move(-3.f,0.f);
-                //this->adjustSpellSpeed(this->phantomSpeed_ - 3.f*this->harry_->getSpeed() - 3.f*this->background_->getSpeed());
-            }
-        break;
-    default:
-        break;
-    }
-}
 
 void Game::initWindow()
 {
@@ -63,6 +27,7 @@ void Game::initVars(){
     this->shootDirection = DIRECTION::RIGHT;
     this->harryIsTurning_ = DIRECTION::NO_TURN;
     this->isHoldingSpace_ = false;
+    //this->phantomTurnXVelocity_ = 0.f;
 }
 
 void Game::initHarryPotter(){
@@ -145,13 +110,46 @@ void Game::updateInput(){
     if (!sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space)){
         isHoldingSpace_ = false;
     } 
+}
 
+void Game::turnTransition(){
+    const float leftDir = this->harry_->getStartWidth();
+    const float rightDir = this->screenWidth - this->harry_->getStartWidth();  
+    switch (harryIsTurning_)
+    {
+    case DIRECTION::NO_TURN:
+    this->adjustSpellSpeed(0.f);
+        return;
+        break;
+    case DIRECTION::LEFT:
+            if(this->harry_->getPos().x >= rightDir){
+                this->harryIsTurning_ = DIRECTION::NO_TURN;
+            }
+            else{
+                this->harry_->move(3.f,0.f);
+                this->background_->move(3.f,0.f);
+                this->adjustSpellSpeed(3.f*this->harry_->getSpeed() +3.f*this->background_->getSpeed());
+            }
+
+        break;
+    case DIRECTION::RIGHT:
+         if(this->harry_->getPos().x <= leftDir){
+                this->harryIsTurning_ = DIRECTION::NO_TURN;
+            }
+            else{
+                this->harry_->move(-3.f,0.f);
+                this->background_->move(-3.f,0.f);
+                this->adjustSpellSpeed(-3.f*this->harry_->getSpeed() -3.f*this->background_->getSpeed());
+            }
+        break;
+    default:
+        break;
+    }
 }
 
 void Game::updateSpell(){
     auto counter = 0;
     for (auto *spell : this->spells_){
-        std::cout <<  "Relative Velocity Is " << spell->getActualVelocity() - this->phantomXVelocity_ << "\n";
         spell->update();
         if((spell->getBounds().top + spell->getBounds().height <= 0.f) || (spell->getBounds().top >= this->screenHeight) ||
            (spell->getBounds().left + spell->getBounds().width <= 0.f) || (spell->getBounds().left >= this->screenWidth)){
@@ -163,9 +161,9 @@ void Game::updateSpell(){
     }
 }
 
-void Game::adjustSpellSpeed(float phantomXVelocity){
+void Game::adjustSpellSpeed(float phantomTurnVelocity){
     for (auto &spell: spells_){
-        spell->updatePhantomVelocity(phantomXVelocity);
+        spell->updatePhantomTurnVelocity(phantomTurnVelocity);
     }
 }
 
