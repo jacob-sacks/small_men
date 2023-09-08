@@ -30,6 +30,10 @@ const sf::FloatRect Spell::getBounds() const{
     return this->spell_.getGlobalBounds();
 }
 
+void Spell::updatePhantomVelocity(float phantomVelocity){
+    this->phantomVelocity_ = phantomVelocity;
+}
+
 void Spell::updatePhantomTurnVelocity(float phantomTurnVelocity){
     this->phantomTurnVelocity_ = phantomTurnVelocity;
 }
@@ -53,3 +57,4 @@ float Spell::getActualVelocity()
 Spell::~Spell(){
 
 }
+

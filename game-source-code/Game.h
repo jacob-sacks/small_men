@@ -30,6 +30,7 @@ class Game{
         const unsigned int screenHeight = 650;
         const unsigned int screenWidth = 1200;
         float phantomXVelocity_;
+        float phantomTurnVelocity_;
         void turnTransition();
         void initWindow();
         void initTextures();
@@ -43,7 +44,6 @@ class Game{
         void updatePollEvents();
         void updateInput();
         void updateSpell();
-        void adjustSpellSpeed(float phantomSpeed);
         void update();
         void render();
 };

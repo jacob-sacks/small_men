@@ -22,6 +22,7 @@ class Spell{
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY);
         Spell(sf::Texture* texture, float originX, float originY, float dirX, float dirY, float travelingXVelocity);
         ~Spell();
+        void updatePhantomVelocity(float phantomVelocity);
         void updatePhantomTurnVelocity(float turnPhantomVelocity);
         const sf::FloatRect getBounds() const;
         void update();

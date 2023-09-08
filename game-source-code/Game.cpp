@@ -81,8 +81,7 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(-1.f,0.f);
-            this->phantomXVelocity_ = 1.f*this->background_->getSpeed();
-            //this->adjustSpellSpeed(-1.f*this->background_->getSpeed());
+            this->phantomXVelocity_ = -1.f*this->background_->getSpeed();
         }
         this->shootDirection = DIRECTION::RIGHT;
     }
@@ -94,7 +93,7 @@ void Game::updateInput(){
         }
         else {
             this->background_->move(1.f,0.f);
-            this->phantomXVelocity_ = -1.f*this->background_->getSpeed();
+            this->phantomXVelocity_ = 1.f*this->background_->getSpeed();
         }
         this->shootDirection = DIRECTION::LEFT;
     }
@@ -103,7 +102,6 @@ void Game::updateInput(){
     }   
     if(sf::Keyboard::isKeyPressed(sf::Keyboard::Key::Space) && harry_->canAttack() && !isHoldingSpace_){
         this->harry_->resetCoolDown();
-        /////////////////////////
         this->spells_.push_back(new Spell(this->textures_[static_cast<int>(texturesTypes::harrySpell)], harry_->getPos().x, harry_->getPos().y, static_cast<float>(this->shootDirection), 0.f, this->phantomXVelocity_));
         isHoldingSpace_ = true;
     }
@@ -118,7 +116,7 @@ void Game::turnTransition(){
     switch (harryIsTurning_)
     {
     case DIRECTION::NO_TURN:
-    this->adjustSpellSpeed(0.f);
+        this->phantomTurnVelocity_ = 0.f;
         return;
         break;
     case DIRECTION::LEFT:
@@ -128,7 +126,7 @@ void Game::turnTransition(){
             else{
                 this->harry_->move(3.f,0.f);
                 this->background_->move(3.f,0.f);
-                this->adjustSpellSpeed(3.f*this->harry_->getSpeed() +3.f*this->background_->getSpeed());
+                this->phantomTurnVelocity_ = 3.f*this->background_->getSpeed();
             }
 
         break;
@@ -139,7 +137,7 @@ void Game::turnTransition(){
             else{
                 this->harry_->move(-3.f,0.f);
                 this->background_->move(-3.f,0.f);
-                this->adjustSpellSpeed(-3.f*this->harry_->getSpeed() -3.f*this->background_->getSpeed());
+                this->phantomTurnVelocity_ = -3.f*this->background_->getSpeed();
             }
         break;
     default:
@@ -150,6 +148,8 @@ void Game::turnTransition(){
 void Game::updateSpell(){
     auto counter = 0;
     for (auto *spell : this->spells_){
+        spell->updatePhantomVelocity(this->phantomXVelocity_);
+        spell->updatePhantomTurnVelocity(this->phantomTurnVelocity_);
         spell->update();
         if((spell->getBounds().top + spell->getBounds().height <= 0.f) || (spell->getBounds().top >= this->screenHeight) ||
            (spell->getBounds().left + spell->getBounds().width <= 0.f) || (spell->getBounds().left >= this->screenWidth)){
@@ -161,11 +161,6 @@ void Game::updateSpell(){
     }
 }
 
-void Game::adjustSpellSpeed(float phantomTurnVelocity){
-    for (auto &spell: spells_){
-        spell->updatePhantomTurnVelocity(phantomTurnVelocity);
-    }
-}
 
 void Game::render(){
     this->window_->clear(sf::Color(50, 200, 50));
